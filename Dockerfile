@@ -1,15 +1,17 @@
-# Rasmdan Python 3.10 ishlatamiz
-FROM python:3.10-slim
+# Python 3.9 slim image ishlatamiz
+FROM python:3.9-slim
 
-# Ishchi katalog
+# Ishchi papka yaratamiz
 WORKDIR /app
 
-# Dependencies
-COPY requirements.txt .
-RUN pip install --no-cache-dir -r requirements.txt
+# Kerakli kutubxonalarni o'rnatamiz
+RUN pip install --no-cache-dir telethon requests
 
-# Loyihani konteynerga ko‘chirish
-COPY . .
+# Python faylini copy qilamiz
+COPY main.py .
 
-# Skriptni ishga tushirish
+# Session fayllarini copy qilamiz
+COPY myaccount.session .
+
+# Konteyner ishga tushganda dasturni ishga tushiradi
 CMD ["python", "main.py"]
